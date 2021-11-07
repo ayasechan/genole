@@ -1,0 +1,21 @@
+
+- className: IApplicationView
+  from: ole.IUnknown
+  iid: 'ff72ffdd-be7e-43fc-9c03-ad81681e88e4'
+  methods:
+    - name: IsViewVisible
+      comment: 'hello world'
+      args:
+        - name: 'p0'
+          type: '*IApplicationView'
+          idlflags: ['in']
+        - name: 'p1'
+          type: 'int'
+          idlflags: ['out']
+          
+    - name: 'GetID'
+      comment: 'hello world'
+      args:
+        - name: 'p0'
+          type: 'ole.GUID'
+          idlflags: ['out', 'retval']
