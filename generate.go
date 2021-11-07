@@ -152,17 +152,17 @@ func GenMethod(className string, def ComMethod) *Statement {
 	syscallArgs := []string{"uintptr(unsafe.Pointer(v))"}
 	for i, arg := range def.Args {
 		name := arg.Name
-		if arg.IsContainFlag(IDL_IN) {
+		if arg.IsContainFlag(IDL_OUT) {
+			if arg.IsContainFlag(IDL_RETVAL) {
+				name = fmt.Sprintf("uintptr(unsafe.Pointer(&%s_%d))", name, i)
+			}
+		} else {
 			switch {
 			case arg.Type == "uintptr":
 			case strings.HasPrefix(arg.Type, "*"):
 				name = fmt.Sprintf("uintptr(unsafe.Pointer(%s))", name)
 			default:
 				name = fmt.Sprintf("uintptr(unsafe.Pointer(&%s))", name)
-			}
-		} else {
-			if arg.IsContainFlag(IDL_RETVAL) {
-				name = fmt.Sprintf("uintptr(unsafe.Pointer(&%s_%d))", name, i)
 			}
 		}
 		syscallArgs = append(syscallArgs, name)
