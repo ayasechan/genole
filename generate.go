@@ -143,7 +143,7 @@ func GenMethod(className string, def ComMethod) *Statement {
 
 	// syscall
 	// in
-	// 1. uinptr 直接传
+	// 1. uintptr 直接传
 	// 2. 非指针 uintptr(unsafe.Pointer(&v))
 	// 3. 指针 uintptr(unsafe.Pointer(v))
 	// out

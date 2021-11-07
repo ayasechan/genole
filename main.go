@@ -22,7 +22,10 @@ func main() {
 	}
 
 	var classes []ComClass
-	yaml.NewDecoder(srcFd).Decode(&classes)
+	err = yaml.NewDecoder(srcFd).Decode(&classes)
+	if err != nil {
+		panic(err)
+	}
 
 	content := GenHeader(*pkgName)
 	for _, cls := range classes {

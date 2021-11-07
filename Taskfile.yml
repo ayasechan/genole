@@ -8,7 +8,7 @@ vars:
 tasks:
   default:
     cmds:
-      - 'go run . -input foo/foo.go -output foo/com.go'
+      - 'go run .'
     silent: true
 
   gen:
