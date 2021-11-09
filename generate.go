@@ -61,6 +61,17 @@ func GenHeader(pkg string) *File {
 	return f
 }
 
+// key 是包的路径
+// value 是导入的别名
+func GenExtraImport(pkgs map[string]string) *Statement {
+	body := Empty()
+	for k, v := range pkgs {
+		body.Id(v).Lit(k)
+		body.Line()
+	}
+	return Id("import").Parens(body)
+}
+
 func GenClass(def ComClass) *Statement {
 	s := Line()
 

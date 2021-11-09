@@ -19,3 +19,4 @@
         - name: 'p0'
           type: 'ole.GUID'
           idlflags: ['out', 'retval']
+fsad
