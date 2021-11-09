@@ -8,15 +8,14 @@
       args:
         - name: 'p0'
           type: '*IApplicationView'
-          idlflags: ['in']
+          idlFlags: ['in']
         - name: 'p1'
           type: 'int'
-          idlflags: ['out']
+          idlFlags: ['out']
           
     - name: 'GetID'
       comment: 'hello world'
       args:
         - name: 'p0'
           type: 'ole.GUID'
-          idlflags: ['out', 'retval']
-fsad
+          idlFlags: ['out', 'retval']

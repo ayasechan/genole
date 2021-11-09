@@ -35,9 +35,10 @@ type ComMethod struct {
 }
 
 type ComArg struct {
-	Name  string    `yaml:"name"`
-	Type  string    `yaml:"type"`
-	Flags []IdlFlag `yaml:"idlflags"`
+	Name      string    `yaml:"name"`
+	Type      string    `yaml:"type"`
+	Flags     []IdlFlag `yaml:"idlFlags"`
+	IsPointer bool      `yaml:"isPointer"`
 }
 
 func (arg *ComArg) IsContainFlag(flag IdlFlag) bool {
@@ -170,7 +171,7 @@ func GenMethod(className string, def ComMethod) *Statement {
 		} else {
 			switch {
 			case arg.Type == "uintptr":
-			case strings.HasPrefix(arg.Type, "*"):
+			case strings.HasPrefix(arg.Type, "*") || arg.IsPointer:
 				name = fmt.Sprintf("uintptr(unsafe.Pointer(%s))", name)
 			default:
 				name = fmt.Sprintf("uintptr(unsafe.Pointer(&%s))", name)
