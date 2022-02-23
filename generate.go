@@ -158,6 +158,7 @@ func GenMethod(className string, def ComMethod) *Statement {
 	// 1. uintptr 直接传
 	// 2. 非指针 uintptr(unsafe.Pointer(&v))
 	// 3. 指针 uintptr(unsafe.Pointer(v))
+	// 4. 整数 uintptr(v)
 	// out
 	// 1. 非 retval 定义函数参数时一律用 uintptr 调用时直接调
 	// 2. retval 定义为指定的类型 然后 uintptr(unsafe.Pointer(&v))
@@ -171,6 +172,8 @@ func GenMethod(className string, def ComMethod) *Statement {
 		} else {
 			switch {
 			case arg.Type == "uintptr":
+			case isInteger(arg.Type):
+				name = fmt.Sprintf("uintptr(%s)", name)
 			case strings.HasPrefix(arg.Type, "*") || arg.IsPointer:
 				name = fmt.Sprintf("uintptr(unsafe.Pointer(%s))", name)
 			default:

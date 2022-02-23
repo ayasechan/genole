@@ -40,3 +40,16 @@ func (m *ExtraPackageFlag) Set(value string) error {
 	}
 	return nil
 }
+
+func isInteger(s string) bool {
+	l := []string{
+		"int", "int8", "int16", "int32", "int64",
+		"uint", "uint8", "uint16", "uint32", "uint64",
+	}
+	for _, v := range l {
+		if s == v {
+			return true
+		}
+	}
+	return false
+}
